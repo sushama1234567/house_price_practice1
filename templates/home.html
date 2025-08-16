@@ -1,3 +1,92 @@
-<h1>
-    hello world
-</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .prediction {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>House Price Prediction</h1>
+    <form action="/predict" method="post">
+        <div class="form-group">
+            <label for="MedInc">Median Income:</label>
+            <input type="number" step="0.01" name="MedInc" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="HouseAge">House Age:</label>
+            <input type="number" name="HouseAge" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="AveRooms">Average Rooms:</label>
+            <input type="number" step="0.01" name="AveRooms" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="AveBedrms">Average Bedrooms:</label>
+            <input type="number" step="0.01" name="AveBedrms" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="Population">Population:</label>
+            <input type="number" name="Population" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="AveOccup">Average Occupancy:</label>
+            <input type="number" step="0.01" name="AveOccup" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="Latitude">Latitude:</label>
+            <input type="number" step="0.0001" name="Latitude" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="Longitude">Longitude:</label>
+            <input type="number" step="0.0001" name="Longitude" required>
+        </div>
+        
+        <button type="submit">Predict Price</button>
+    </form>
+
+    {% if prediction %}
+    <div class="prediction">
+        <h3>Predicted Price: ${{ "%.2f"|format(prediction[0]) }}</h3>
+    </div>
+    {% endif %}
+</body>
+</html>
